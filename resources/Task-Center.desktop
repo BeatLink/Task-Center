@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Task Center
+Comment=Modern, Powerful Task Management Center
+Categories=Office;Productivity;
+Exec=task-center
+Icon=com.github.beatlink.task_center
+Type=Application
+Encoding=UTF-8
+Terminal=false
+StartupNotify=true
