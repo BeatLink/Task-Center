@@ -1,0 +1,1 @@
+from .setting_window import SettingDialog
