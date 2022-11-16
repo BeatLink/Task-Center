@@ -2,7 +2,7 @@ import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from task_center.ui.gtk.settings_dialog.datastores.datastore_list.datastore_list import DatastoreList
+from task_center.ui.gtk.settings_dialog.datastore_list.datastore_list import DatastoreList
 
 
 class SettingsDialog:
@@ -22,6 +22,7 @@ class SettingsDialog:
         # Datastore List Setup
         self.datastore_list = DatastoreList(self.core.datastores)
         self.datastore_list.edit_dialog.dialog.set_transient_for(self.dialog)
+        self.datastore_list.delete_dialog.dialog.set_transient_for(self.dialog)
         self.stack.add_titled(self.datastore_list.box, "datastores", "Data Sources")
         self.stack.connect("notify::visible-child", self._on_stack_selection_changed)
 
