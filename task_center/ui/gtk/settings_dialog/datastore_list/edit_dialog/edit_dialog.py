@@ -74,10 +74,22 @@ class DatastoreEditDialog:
             self.datastores.list[self.datastore_id].decsync_dir = path
         self.datastores.save_settings()
 
+    def _initialize(self):
+        self.enabled_switch.set_active(False)
+        self.name_entry.set_text("")
+        self.type_combobox.set_active_id("caldav")
+        self.caldav_url_entry.set_text("")
+        self.caldav_username_entry.set_text("")
+        self.caldav_password_entry.set_text("")
+        self.decsync_filechooser_button.unselect_all()
+        self.decsync_filechooser_clear_button.set_visible(False)
+        self.headerbar.set_title("Adding Datastore")
+
     def _load_settings(self):
         self.datastores.load_from_settings()
         self.enabled_switch.set_active(self.datastores.list[self.datastore_id].enabled)
         self.name_entry.set_text(self.datastores.list[self.datastore_id].display_name)
+        self.headerbar.set_title(f"Editing {self.datastores.list[self.datastore_id].display_name}")
         self.type_combobox.set_active_id(self.datastores.list[self.datastore_id].type)
         if self.datastores.list[self.datastore_id].type == "caldav":
             self.caldav_url_entry.set_text(self.datastores.list[self.datastore_id].url)
@@ -94,10 +106,9 @@ class DatastoreEditDialog:
 
     # Functions --------------------------------------------------------------------------------------------------------
     def open(self, datastore_id=None):
-        if not datastore_id:
-            self.headerbar.set_title("Adding Datastore")
-        else:
-            self.datastore_id = datastore_id
+        self.datastore_id = datastore_id
+        if self.datastore_id:
             self._load_settings()
-            self.headerbar.set_title(f"Editing {self.name_entry.get_text()}")
+        else:
+            self._initialize()
         self.dialog.show_now()
