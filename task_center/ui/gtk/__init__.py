@@ -1,1 +1,1 @@
-from .app import run_app
+from .gtk import run_app
