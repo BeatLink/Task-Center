@@ -1,1 +1,0 @@
-from .delete_dialog import DatastoreDeleteDialog

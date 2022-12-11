@@ -4,15 +4,15 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from uuid import uuid4
-from task_center.core.datastores.datastores import MODELS
+from task_center.core.sources.sources import MODELS
 
 
 # Edit Dialog ##########################################################################################################
-class DatastoreEditDialog:
-    def __init__(self, datastores):
+class SourceEditDialog:
+    def __init__(self, sources):
         # Settings Setup
-        self.datastores = datastores
-        self.datastore_id = ""
+        self.sources = sources
+        self.source_id = ""
 
         # GtkBuilder Setup
         self.gtk_builder = Gtk.Builder()
@@ -58,21 +58,21 @@ class DatastoreEditDialog:
 
     # Internal functions -----------------------------------------------------------------------------------------------
     def _save_settings(self):
-        datastore_type = self.type_combobox.get_active_id()
-        if not self.datastore_id:
-            self.datastore_id = str(uuid4())
-            self.datastores.list[self.datastore_id] = MODELS[datastore_type]()
-        self.datastores.list[self.datastore_id].enabled = self.enabled_switch.get_active()
-        self.datastores.list[self.datastore_id].display_name = self.name_entry.get_text()
-        if datastore_type == "caldav":
-            self.datastores.list[self.datastore_id].url = self.caldav_url_entry.get_text()
-            self.datastores.list[self.datastore_id].username = self.caldav_username_entry.get_text()
-            self.datastores.list[self.datastore_id].password = self.caldav_password_entry.get_text()
-        elif datastore_type == "decsync":
+        source_type = self.type_combobox.get_active_id()
+        if not self.source_id:
+            self.source_id = str(uuid4())
+            self.sources.list[self.source_id] = MODELS[source_type]()
+        self.sources.list[self.source_id].enabled = self.enabled_switch.get_active()
+        self.sources.list[self.source_id].display_name = self.name_entry.get_text()
+        if source_type == "caldav":
+            self.sources.list[self.source_id].url = self.caldav_url_entry.get_text()
+            self.sources.list[self.source_id].username = self.caldav_username_entry.get_text()
+            self.sources.list[self.source_id].password = self.caldav_password_entry.get_text()
+        elif source_type == "decsync":
             path = self.decsync_filechooser_button.get_uri() if self.decsync_filechooser_button.get_uri() else ""
             path = path.replace("file://", "")
-            self.datastores.list[self.datastore_id].decsync_dir = path
-        self.datastores.save_settings()
+            self.sources.list[self.source_id].decsync_dir = path
+        self.sources.save_settings()
 
     def _initialize(self):
         self.enabled_switch.set_active(False)
@@ -83,20 +83,20 @@ class DatastoreEditDialog:
         self.caldav_password_entry.set_text("")
         self.decsync_filechooser_button.unselect_all()
         self.decsync_filechooser_clear_button.set_visible(False)
-        self.headerbar.set_title("Adding Datastore")
+        self.headerbar.set_title("Adding Source")
 
     def _load_settings(self):
-        self.datastores.load_from_settings()
-        self.enabled_switch.set_active(self.datastores.list[self.datastore_id].enabled)
-        self.name_entry.set_text(self.datastores.list[self.datastore_id].display_name)
-        self.headerbar.set_title(f"Editing {self.datastores.list[self.datastore_id].display_name}")
-        self.type_combobox.set_active_id(self.datastores.list[self.datastore_id].type)
-        if self.datastores.list[self.datastore_id].type == "caldav":
-            self.caldav_url_entry.set_text(self.datastores.list[self.datastore_id].url)
-            self.caldav_username_entry.set_text(self.datastores.list[self.datastore_id].username)
-            self.caldav_password_entry.set_text(self.datastores.list[self.datastore_id].password)
-        elif self.datastores.list[self.datastore_id].type == "decsync":
-            path = self.datastores.list[self.datastore_id].decsync_dir
+        self.sources.load_from_settings()
+        self.enabled_switch.set_active(self.sources.list[self.source_id].enabled)
+        self.name_entry.set_text(self.sources.list[self.source_id].display_name)
+        self.headerbar.set_title(f"Editing {self.sources.list[self.source_id].display_name}")
+        self.type_combobox.set_active_id(self.sources.list[self.source_id].type)
+        if self.sources.list[self.source_id].type == "caldav":
+            self.caldav_url_entry.set_text(self.sources.list[self.source_id].url)
+            self.caldav_username_entry.set_text(self.sources.list[self.source_id].username)
+            self.caldav_password_entry.set_text(self.sources.list[self.source_id].password)
+        elif self.sources.list[self.source_id].type == "decsync":
+            path = self.sources.list[self.source_id].decsync_dir
             if path:
                 self.decsync_filechooser_button.set_uri(f"file://{path}")
                 self.decsync_filechooser_clear_button.set_visible(True)
@@ -105,9 +105,9 @@ class DatastoreEditDialog:
                 self.decsync_filechooser_clear_button.set_visible(False)
 
     # Functions --------------------------------------------------------------------------------------------------------
-    def open(self, datastore_id=None):
-        self.datastore_id = datastore_id
-        if self.datastore_id:
+    def open(self, source_id=None):
+        self.source_id = source_id
+        if self.source_id:
             self._load_settings()
         else:
             self._initialize()

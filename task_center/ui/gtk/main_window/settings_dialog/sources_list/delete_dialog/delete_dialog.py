@@ -4,15 +4,15 @@
 import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
 
 
 # List Container #######################################################################################################
-class DatastoreDeleteDialog:
-    def __init__(self, datastores):
+class SourceDeleteDialog:
+    def __init__(self, sources):
         # Variables
-        self.datastore_id = None
-        self.datastores = datastores
+        self.source_id = None
+        self.sources = sources
 
         # GtkBuilder
         self.gtk_builder = Gtk.Builder()
@@ -30,14 +30,14 @@ class DatastoreDeleteDialog:
         self.dialog.hide()
 
     def _on_delete_button_clicked(self, _):
-        del self.datastores.list[self.datastore_id]
-        self.datastores.save_settings()
+        del self.sources.list[self.source_id]
+        self.sources.save_settings()
         self.dialog.hide()
 
     # Functions --------------------------------------------------------------------------------------------------------
-    def open(self, datastore_id):
-        self.datastore_id = datastore_id
-        datastore = self.datastores.list[self.datastore_id]
-        self.headerbar.set_title(f"Delete {datastore.display_name}?")
-        self.label.set_text(f"Are you sure you wish to delete the datastore '{datastore.display_name}'?")
+    def open(self, source_id):
+        self.source_id = source_id
+        source = self.sources.list[self.source_id]
+        self.headerbar.set_title(f"Delete {source.display_name}?")
+        self.label.set_text(f"Are you sure you wish to delete the source '{source.display_name}'?")
         self.dialog.show()
