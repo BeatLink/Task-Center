@@ -18,7 +18,7 @@ class GtkApp(Gtk.Application):
         self.connect("activate", self.on_activate)
 
         # Main Window Setup
-        self.main_window = MainWindow(self.core, self.about_dialog)
+        self.main_window = MainWindow(self.core)
         self.main_window.window.connect("destroy", Gtk.main_quit)
 
     def on_activate(self, _=None):
