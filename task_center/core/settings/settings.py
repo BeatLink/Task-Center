@@ -1,7 +1,6 @@
 import pathlib
 import json
 
-
 class Settings:
     def __init__(self, appinfo):
         # Setup Settings File
