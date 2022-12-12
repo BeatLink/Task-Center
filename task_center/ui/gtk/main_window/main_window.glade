@@ -2,96 +2,115 @@
 <!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <object class="GtkPopover" id="headerbar_popover">
+  <object class="GtkImage" id="about_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">dialog-information</property>
+    <property name="icon_size">3</property>
+  </object>
+  <object class="GtkImage" id="quit_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">exit</property>
+    <property name="icon_size">3</property>
+  </object>
+  <object class="GtkImage" id="settings_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">gtk-preferences</property>
+    <property name="icon_size">3</property>
+  </object>
+  <object class="GtkPopover" id="popover">
     <property name="can-focus">False</property>
     <child>
-      <object class="GtkToolbar" id="headerbar_popover_toolbar">
+      <object class="GtkBox" id="box">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="margin-left">6</property>
+        <property name="margin-right">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
         <property name="orientation">vertical</property>
-        <property name="show-arrow">False</property>
+        <property name="spacing">6</property>
+        <property name="homogeneous">True</property>
         <child>
-          <object class="GtkToolButton" id="settings_dialog_button">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="GtkButton" id="settings_dialogbutton">
             <property name="label" translatable="yes">Settings</property>
-            <property name="use-underline">True</property>
-            <property name="stock-id">gtk-preferences</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">settings_button_image</property>
+            <property name="relief">none</property>
             <signal name="clicked" handler="_on_settings_dialog_button_clicked" swapped="no"/>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="homogeneous">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkSeparatorToolItem">
+          <object class="GtkButton" id="about_button">
+            <property name="label" translatable="yes">About   </property>
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="homogeneous">True</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton" id="about_dialog_button">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">About</property>
-            <property name="use-underline">True</property>
-            <property name="stock-id">gtk-about</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">about_button_image</property>
+            <property name="relief">none</property>
             <signal name="clicked" handler="_on_about_dialog_button_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="homogeneous">True</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparatorToolItem">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="homogeneous">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <object class="GtkToolButton" id="quit_button">
+          <object class="GtkButton" id="quit_button">
+            <property name="label" translatable="yes">Exit     </property>
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Quit</property>
-            <property name="use-underline">True</property>
-            <property name="stock-id">gtk-quit</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">quit_button_image</property>
+            <property name="relief">none</property>
             <signal name="clicked" handler="_on_quit_button_clicked" swapped="no"/>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
           <packing>
-            <property name="expand">True</property>
-            <property name="homogeneous">True</property>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
     </child>
   </object>
-  <object class="GtkApplicationWindow" id="main_window">
+  <object class="GtkApplicationWindow" id="window">
     <property name="can-focus">False</property>
     <property name="window-position">center</property>
     <property name="gravity">center</property>
+    <property name="startup-id">task-center</property>
     <property name="show-menubar">False</property>
+    <signal name="size-allocate" handler="_on_window_size_allocate" swapped="no"/>
     <child>
       <object class="GtkPaned" id="sidebar_pane">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
-        <property name="position">250</property>
         <property name="position-set">True</property>
         <property name="wide-handle">True</property>
+        <signal name="notify::position" handler="_on_sidebar_pane_position_notify" swapped="no"/>
         <child>
-          <object class="GtkScrolledWindow" id="sidebar_scrolledwindow">
+          <object class="GtkScrolledWindow" id="sidebar_scrolled_window">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="shadow-type">in</property>
@@ -103,7 +122,6 @@
                   <object class="GtkBox" id="sidebar_box">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="valign">start</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <placeholder/>
@@ -114,22 +132,67 @@
             </child>
           </object>
           <packing>
-            <property name="resize">False</property>
+            <property name="resize">True</property>
             <property name="shrink">False</property>
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="main_box">
+          <object class="GtkPaned" id="task_pane">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="orientation">vertical</property>
+            <property name="can-focus">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="position">800</property>
+            <property name="position-set">True</property>
+            <property name="wide-handle">True</property>
+            <signal name="notify::position" handler="_on_task_pane_position_notify" swapped="no"/>
             <child>
-              <placeholder/>
+              <object class="GtkBox" id="tasklist_box">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="resize">True</property>
+                <property name="shrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="task_scrolled_window">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
+                <child>
+                  <object class="GtkViewport" id="task_viewport">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkBox" id="task_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="resize">True</property>
+                <property name="shrink">False</property>
+              </packing>
             </child>
           </object>
           <packing>
             <property name="resize">True</property>
-            <property name="shrink">True</property>
+            <property name="shrink">False</property>
           </packing>
         </child>
       </object>
@@ -147,7 +210,7 @@
             <property name="receives-default">True</property>
             <property name="tooltip-text" translatable="yes">Menu</property>
             <property name="use-popover">False</property>
-            <property name="popover">headerbar_popover</property>
+            <property name="popover">popover</property>
             <child>
               <object class="GtkImage" id="settings_button_icon">
                 <property name="visible">True</property>
