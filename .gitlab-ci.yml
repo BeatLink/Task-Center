@@ -1,0 +1,121 @@
+image: python:3.7-stretch
+
+# Before Script ###################################################################################
+before_script:
+  # Poetry install and configuration --------------------------------------------------------------
+  - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+  - source $HOME/.poetry/env
+  - poetry config repositories.testpypi https://test.pypi.org/legacy/
+
+  # other needed build tools ----------------------------------------------------------------------
+  - pip3 install pex
+  - pip3 install gitlab_release
+
+  # Gtk dependencies ------------------------------------------------------------------------------
+  - apt update
+  - apt install -y python3-cairo-dev libgirepository1.0-dev libcairo2-dev gir1.2-gui-3.0 python3-dev
+  - pip3 install pycairo
+  - pip3 install pygobject
+
+# Stages ##########################################################################################
+stages:
+  - Testing
+  - Development Build
+  - Release Build
+
+# Testing #########################################################################################
+Unit Tests:
+  stage: Testing
+  script:
+    - rm -rf ./dist
+    - poetry install
+    - poetry run task-center --unittest
+
+# Development Building ############################################################################
+Build Test Sources:
+  stage: Development Build
+  script:
+    - rm -rf ./dist
+    - poetry version $(date +%s) # development builds uses timestamps for the version number.
+    - poetry build
+  artifacts:
+    paths:
+      - "dist/*"
+
+Upload To TestPyPI:
+    stage: Development Build
+    script:
+    - rm -rf ./dist
+    - poetry version $(date +%s)
+    - poetry publish --build --repository testpypi --username $TWINE_TEST_USERNAME --password $TWINE_TEST_PASSWORD
+
+Build Development Pex File:
+  stage: Development Build
+  script:
+    - rm -rf ./dist
+    - poetry version $(date +%s)
+    - poetry build
+    - pex --no-wheel --find-links ./dist pip pycairo pygobject task-center -e task_center.launch:start -o task_center.pex
+  artifacts:
+    paths:
+      - "dist/*"
+      - "*.pex"
+
+
+Build Test Flatpak:
+  stage: Development Build
+  script:
+    - apt update
+    - apt install -y flatpak flatpak-builder
+    - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    - flatpak install flathub org.gnome.Platform//3.30 org.gnome.Sdk//3.30
+    - flatpak-builder build-dir io.gitlab.task-center.json
+
+# Release Build ########################################################################################################
+Release to Gitlab:
+  stage: Release Build
+  script:
+    - rm -rf ./dist
+    - poetry build
+    - python3 -m gitlab_release $GITLAB_RELEASE_PRIVATE_TOKEN files dist/*
+  artifacts:
+    paths:
+      - "dist/*"
+  only:
+    - tags
+
+Release To PyPI:
+  stage: Release Build
+  script:
+    - rm -rf ./dist
+    - poetry version $CI_COMMIT_TAG
+    - poetry publish --build --username $TWINE_USERNAME --password $TWINE_PASSWORD
+  only:
+    - tags
+
+Build Release Pex File:
+  stage: Release Build
+  script:
+    - rm -rf ./dist
+    - poetry build
+    - pex --no-wheel --find-links ./dist pip pycairo pygobject task-center -e task_center.launch:start -o task_center.pex
+    - python3 -m gitlab_release $GITLAB_RELEASE_PRIVATE_TOKEN files *.pex
+    - pex pygobject task_center -e task_center.gui.main_window.main_window:main -o task_center.pex
+
+  artifacts:
+    paths:
+      - "dist/*"
+      - "*.pex"
+  only:
+    - tags
+
+Build Flatpak:
+  stage: Release Build
+  script:
+    - apt update
+    - apt install -y flatpak flatpak-builder
+    - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    - flatpak install flathub org.gnome.Platform//3.30 org.gnome.Sdk//3.30
+    - flatpak-builder build-dir io.gitlab.task-center.json
+  only:
+    - tags
