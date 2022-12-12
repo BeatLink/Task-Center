@@ -32,17 +32,17 @@ class MainWindow:
         self.task_box = self.gtk_builder.get_object('task_box')
 
         # Setup Task Pane
-        self.taskview = TaskView(self.core.sources, self.task_pane)
+        self.taskview = TaskView(self.core, self.task_pane)
         self.task_box.add(self.taskview.box)
         self.task_box.set_child_packing(self.taskview.box, True, True, 0, Gtk.PackType.START)
 
         # Setup Tasklist Pane
-        self.tasklist = Tasklist(self.core.sources, self.taskview)
+        self.tasklist = Tasklist(self.core, self.taskview)
         self.tasklist_box.add(self.tasklist.box)
         self.task_box.set_child_packing(self.tasklist.box, True, True, 0, Gtk.PackType.START)
 
         # Setup Sources Sidebars
-        self.sources_sidebar = SourcesSidebar(self.core.sources, self.tasklist)
+        self.sources_sidebar = SourcesSidebar(self.core, self.tasklist)
         self.sidebar_box.add(self.sources_sidebar.box)
         self.sidebar_box.set_child_packing(self.sources_sidebar.box, True, True, 0, Gtk.PackType.START)
         self.sources_sidebar.edit_dialog.dialog.set_transient_for(self.window)
