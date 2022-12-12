@@ -5,7 +5,7 @@
 import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
 
 
 # List Row #############################################################################################################
@@ -30,6 +30,7 @@ class SidebarList:
         self.gtk_builder.add_from_file(str(pathlib.Path(__file__).parent.resolve() / 'sidebar_list.glade'))
 
         # Widgets
+        self.scrolled_window = self.gtk_builder.get_object("scrolled_window")
         self.box = self.gtk_builder.get_object('box')
         self.label = self.gtk_builder.get_object('label')
         self.label.set_text(list_name)
@@ -38,7 +39,7 @@ class SidebarList:
 
         # Other Widgets
         self.editor = editor
-        self.context_menu = context_menu
+        self.menu = context_menu
 
         # Variables
         self.rows = {}
@@ -69,6 +70,8 @@ class SidebarList:
         self.edit_row(id, text, color, icon_character)
 
     def edit_row(self, id, text, color, icon_character):
+        if not color:
+            color = "#000000"
         self.rows[id].icon_label.set_markup(f'<span foreground="{color}">{icon_character}</span>')
         self.rows[id].title_label.set_text(text)
 
