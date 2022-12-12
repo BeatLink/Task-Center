@@ -78,6 +78,7 @@
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="interpolate-size">True</property>
+                <signal name="notify::visible-child-name" handler="_on_stack_selection_changed" swapped="no"/>
                 <child>
                   <placeholder/>
                 </child>
