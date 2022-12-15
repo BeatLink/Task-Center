@@ -19,19 +19,19 @@ class Source:
         self.display_name = settings_dict['display_name']
 
     # Lists ------------------------------------------------------------------------------------------------------------
-    def create_list(self, tasklist):
+    def create_collection(self, tasklist):
         raise NotImplemented
 
-    def get_all_lists(self):
+    def get_all_collections(self):
         raise NotImplemented
 
-    def get_list(self, tasklist_id):
+    def get_collection(self, tasklist_id):
         raise NotImplemented
 
-    def update_list(self, tasklist_id, tasklist):
+    def update_collection(self, tasklist_id, tasklist):
         raise NotImplemented
 
-    def delete_list(self, tasklist_id):
+    def delete_collection(self, tasklist_id):
         raise NotImplemented
 
     # Tasks ------------------------------------------------------------------------------------------------------------

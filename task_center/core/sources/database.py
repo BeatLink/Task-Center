@@ -2,7 +2,7 @@ import pathlib
 import peewee
 import playhouse.signals
 
-from task_center.core.models.source import Source
+from task_center.core.sources.source import Source
 
 """This class is Task Center's logic manager/API. This manages the tasks, tags and file handling."""
 
@@ -232,7 +232,7 @@ class DatabaseSource(Source):
         playhouse.signals.post_delete.connect(callback)
 
     @staticmethod
-    def create_list(self, id=None, parent=None, sort_order=0, name="", description="", color=""):
+    def create_collection(self, id=None, parent=None, sort_order=0, name="", description="", color=""):
         List.create(
             id=id,
             parent=parent,
@@ -242,10 +242,10 @@ class DatabaseSource(Source):
             color=color
         )
 
-    def get_all_lists(self):
+    def get_all_collections(self):
         return List.select()
 
-    def update_list(self, id, name="", color=""):
+    def update_collection(self, id, name="", color=""):
         pass
 
 
