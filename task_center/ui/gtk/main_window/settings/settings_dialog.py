@@ -1,11 +1,9 @@
 import pathlib
 import gi
-
-from task_center.ui.gtk.main_window.settings_dialog.window_settings.window_settings import WindowSettings
-
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from task_center.ui.gtk.main_window.settings_dialog.sources_list.sources_list import SourcesList
+from task_center.ui.gtk.main_window.settings.sources.sources_list import SourcesList
+from task_center.ui.gtk.main_window.settings.window_settings.window_settings import WindowSettings
 
 
 class SettingsDialog:

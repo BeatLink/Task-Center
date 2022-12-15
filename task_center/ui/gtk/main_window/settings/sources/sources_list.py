@@ -3,8 +3,8 @@ import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from task_center.ui.gtk.main_window.settings_dialog.sources_list.edit_dialog.edit_dialog import SourceEditDialog
-from task_center.ui.gtk.main_window.settings_dialog.sources_list.delete_dialog.delete_dialog import SourceDeleteDialog
+from task_center.ui.gtk.main_window.settings.sources.edit_dialog.edit_dialog import SourceEditDialog
+from task_center.ui.gtk.main_window.settings.sources.delete_dialog.delete_dialog import SourceDeleteDialog
 
 
 # List Row #############################################################################################################
