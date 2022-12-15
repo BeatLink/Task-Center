@@ -1,0 +1,1 @@
+from .collection_delete_dialog import CollectionDeleteDialog
