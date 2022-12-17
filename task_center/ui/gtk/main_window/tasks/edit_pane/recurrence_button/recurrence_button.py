@@ -3,8 +3,8 @@ import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from task_center.core.models.recurrence import Recurrence
-from task_center.ui.gtk.main_window.taskview.datetime_button import DateTimeButton
+from task_center.core.tasks.recurrence import Recurrence
+from task_center.ui.gtk.main_window.tasks.edit_pane.datetime_button import DateTimeButton
 
 class RecurrenceButton:
     """
@@ -12,7 +12,7 @@ class RecurrenceButton:
     """
     def __init__(self):
         # gui builder preparation
-        glade_file_path = str((pathlib.Path(__file__).parent / "recurrence_popover.glade").resolve())
+        glade_file_path = str((pathlib.Path(__file__).parent / "recurrence_button.glade").resolve())
         builder = Gtk.Builder()
         builder.add_from_file(glade_file_path)
         builder.connect_signals(self)
@@ -47,11 +47,11 @@ class RecurrenceButton:
 
     # element updaters -------------------------------------------------------------------------------------------------
     def _on_button_clicked(self, *_):
-        self.popover.popover.show()
+        self.popover.show()
 
     def _on_popover_closed(self, *_):
         recurrence = self.get_data()
-        self.button.set_label("Repeats " + recurrence.string if recurrence.enabled else "Does not Repeat")
+        self.button.set_label(recurrence.string.capitalize() if recurrence.enabled else "Never")
 
     def _on_enabled_toggle_state_set(self, *_):
         enabled = self.enabled_toggle.get_active()
@@ -139,5 +139,6 @@ class RecurrenceButton:
             self._on_day_of_month_clear_button_clicked()
         self._on_day_of_month_set_button_clicked()
         self._on_stop_type_menu_changed()
+        self._on_popover_closed()
 
 
