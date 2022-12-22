@@ -8,7 +8,7 @@ from gi.repository import Gtk, GdkPixbuf
 # GtkAboutDialog #######################################################################################################
 class AboutDialog:
     def __init__(self, app_info):
-        # AppInfo
+        # AppInfoManager
         self.app_info = app_info
 
         # GtkBuilder Setup
