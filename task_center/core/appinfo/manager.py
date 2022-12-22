@@ -12,9 +12,8 @@ import appdirs
 import tomlkit
 import arrow
 
-
-# AppInfo ##############################################################################################################
-class AppInfo:
+# AppInfoManager #######################################################################################################
+class AppInfoManager:
     def __init__(self):
         file_path = pathlib.Path(__file__).parents[3] / "pyproject.toml"
         with file_path.open('r') as app_data_file:

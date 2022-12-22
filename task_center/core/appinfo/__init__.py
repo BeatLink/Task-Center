@@ -1,1 +1,1 @@
-from .appinfo import AppInfo
+from .manager import AppInfoManager
