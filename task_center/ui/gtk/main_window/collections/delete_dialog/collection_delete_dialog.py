@@ -3,13 +3,16 @@
 # Imports ##############################################################################################################
 import pathlib
 import gi
+
+from task_center.core.app import TaskCenterCore
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 
 # List Container #######################################################################################################
 class CollectionDeleteDialog:
-    def __init__(self, core, collection_sidebar_manager):
+    def __init__(self, core: TaskCenterCore, collection_sidebar_manager):
         # Variables
         self.core = core
         self.source_id = ""
@@ -33,15 +36,15 @@ class CollectionDeleteDialog:
         self.dialog.hide()
 
     def _on_delete_button_clicked(self, _):
-        self.core.sources.list[self.source_id].delete_collection(self.collection_id)
-        self.collection_sidebar_manager.sidebars[self.source_id].delete_collection(self.collection_id)
+        self.core.tasks_manager.delete_collection(self.source_id, self.collection_id)
+        self.collection_sidebar_manager.sidebars[self.source_id].delete_collection_row(self.collection_id)
         self.dialog.hide()
 
     # Functions --------------------------------------------------------------------------------------------------------
     def open(self, source_id, collection_id):
         self.source_id = source_id
         self.collection_id = collection_id
-        collection = self.core.sources.list[self.source_id].get_collection(self.collection_id)
+        collection = self.core.tasks_manager.get_collection(self.source_id, self.collection_id)
         self.headerbar.set_title(f"Delete {collection.name}?")
         self.label.set_text(f"Are you sure you wish to delete collection '{collection.name}'?")
         self.dialog.show()
