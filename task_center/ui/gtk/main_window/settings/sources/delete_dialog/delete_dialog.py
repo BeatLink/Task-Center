@@ -5,14 +5,15 @@ import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+from task_center.core.app import TaskCenterCore
 
 
 # List Container #######################################################################################################
 class SourceDeleteDialog:
-    def __init__(self, sources):
+    def __init__(self, core: TaskCenterCore):
         # Variables
         self.source_id = None
-        self.sources = sources
+        self.core = core
 
         # GtkBuilder
         self.gtk_builder = Gtk.Builder()
@@ -30,14 +31,13 @@ class SourceDeleteDialog:
         self.dialog.hide()
 
     def _on_delete_button_clicked(self, _):
-        del self.sources.list[self.source_id]
-        self.sources.save_settings()
+        self.core.tasks_manager.delete_source(self.source_id)
         self.dialog.hide()
 
     # Functions --------------------------------------------------------------------------------------------------------
     def open(self, source_id):
         self.source_id = source_id
-        source = self.sources.list[self.source_id]
+        source = self.core.tasks_manager.get_source(self.source_id)
         self.headerbar.set_title(f"Delete {source.display_name}?")
         self.label.set_text(f"Are you sure you wish to delete the source '{source.display_name}'?")
         self.dialog.show()

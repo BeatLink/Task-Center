@@ -3,15 +3,15 @@ import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from uuid import uuid4
-from task_center.core.sources.sources import MODELS
+from task_center.core.app import TaskCenterCore
+from task_center.core.tasks.sources import SOURCES
 
 
 # Edit Dialog ##########################################################################################################
 class SourceEditDialog:
-    def __init__(self, sources):
+    def __init__(self, core: TaskCenterCore):
         # Settings Setup
-        self.sources = sources
+        self.core = core
         self.source_id = ""
 
         # GtkBuilder Setup
@@ -60,19 +60,21 @@ class SourceEditDialog:
     def _save_settings(self):
         source_type = self.type_combobox.get_active_id()
         if not self.source_id:
-            self.source_id = str(uuid4())
-            self.sources.list[self.source_id] = MODELS[source_type]()
-        self.sources.list[self.source_id].enabled = self.enabled_switch.get_active()
-        self.sources.list[self.source_id].display_name = self.name_entry.get_text()
+            source = SOURCES[source_type]()
+            self.source_id = self.core.tasks_manager.create_source(source)
+        else:
+            source = self.core.tasks_manager.get_source(self.source_id)
+        source.enabled = self.enabled_switch.get_active()
+        source.display_name = self.name_entry.get_text()
         if source_type == "caldav":
-            self.sources.list[self.source_id].url = self.caldav_url_entry.get_text()
-            self.sources.list[self.source_id].username = self.caldav_username_entry.get_text()
-            self.sources.list[self.source_id].password = self.caldav_password_entry.get_text()
+            source.url = self.caldav_url_entry.get_text()
+            source.username = self.caldav_username_entry.get_text()
+            source.password = self.caldav_password_entry.get_text()
         elif source_type == "decsync":
             path = self.decsync_filechooser_button.get_uri() if self.decsync_filechooser_button.get_uri() else ""
             path = path.replace("file://", "")
-            self.sources.list[self.source_id].decsync_dir = path
-        self.sources.save_settings()
+            source.decsync_dir = path
+        self.core.tasks_manager.update_source(self.source_id, source)
 
     def _initialize(self):
         self.enabled_switch.set_active(False)
@@ -83,20 +85,20 @@ class SourceEditDialog:
         self.caldav_password_entry.set_text("")
         self.decsync_filechooser_button.unselect_all()
         self.decsync_filechooser_clear_button.set_visible(False)
-        self.headerbar.set_title("Adding Source")
+        self.headerbar.set_title("Adding Backends")
 
     def _load_settings(self):
-        self.sources.load_from_settings()
-        self.enabled_switch.set_active(self.sources.list[self.source_id].enabled)
-        self.name_entry.set_text(self.sources.list[self.source_id].display_name)
-        self.headerbar.set_title(f"Editing {self.sources.list[self.source_id].display_name}")
-        self.type_combobox.set_active_id(self.sources.list[self.source_id].type)
-        if self.sources.list[self.source_id].type == "caldav":
-            self.caldav_url_entry.set_text(self.sources.list[self.source_id].url)
-            self.caldav_username_entry.set_text(self.sources.list[self.source_id].username)
-            self.caldav_password_entry.set_text(self.sources.list[self.source_id].password)
-        elif self.sources.list[self.source_id].type == "decsync":
-            path = self.sources.list[self.source_id].decsync_dir
+        source = self.core.tasks_manager.get_source(self.source_id)
+        self.enabled_switch.set_active(source.enabled)
+        self.name_entry.set_text(source.display_name)
+        self.headerbar.set_title(f"Editing {source.display_name}")
+        self.type_combobox.set_active_id(source.type)
+        if source.type == "caldav":
+            self.caldav_url_entry.set_text(source.url)
+            self.caldav_username_entry.set_text(source.username)
+            self.caldav_password_entry.set_text(source.password)
+        elif source.type == "decsync":
+            path = source.decsync_dir
             if path:
                 self.decsync_filechooser_button.set_uri(f"file://{path}")
                 self.decsync_filechooser_clear_button.set_visible(True)

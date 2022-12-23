@@ -66,6 +66,7 @@
             <property name="can-focus">True</property>
             <property name="adjustment">task_pane_size_spinbutton_adjustment</property>
             <property name="value">200</property>
+            <signal name="value-changed" handler="_on_task_pane_size_spinbutton_value_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left-attach">1</property>

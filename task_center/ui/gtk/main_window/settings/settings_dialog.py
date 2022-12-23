@@ -2,15 +2,15 @@ import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+from task_center.core.app import TaskCenterCore
 from task_center.ui.gtk.main_window.settings.sources.sources_list import SourcesList
 from task_center.ui.gtk.main_window.settings.window_settings.window_settings import WindowSettings
 
 
 class SettingsDialog:
-    def __init__(self, core, main_window_gtk_builder):
+    def __init__(self, core: TaskCenterCore):
         # Settings Setup
         self.core = core
-        self.main_window_gtk_builder = main_window_gtk_builder
 
         # GtkBuilder Setup
         self.gtk_builder = Gtk.Builder()
@@ -21,14 +21,14 @@ class SettingsDialog:
         self.dialog = self.gtk_builder.get_object('dialog')
         self.stack = self.gtk_builder.get_object("stack")
 
-        # Sources List Setup
+        # BackendManager List Setup
         self.sources_list = SourcesList(self.core)
         self.sources_list.edit_dialog.dialog.set_transient_for(self.dialog)
         self.sources_list.delete_dialog.dialog.set_transient_for(self.dialog)
         self.stack.add_titled(self.sources_list.box, "core", "Data Sources")
 
         # Window Settings Setup
-        self.window_settings = WindowSettings(self.core.settings, main_window_gtk_builder)
+        self.window_settings = WindowSettings(self.core.settings_manager)
         self.stack.add_titled(self.window_settings.box, "window_settings", "Window Settings")
 
     # Event Handlers ---------------------------------------------------------------------------------------------------
@@ -41,7 +41,6 @@ class SettingsDialog:
             self.sources_list.refresh_list()
         elif self.stack.get_visible_child_name() == "window_settings":
             self.window_settings.load()
-
 
     # Functions --------------------------------------------------------------------------------------------------------
     def open(self):
