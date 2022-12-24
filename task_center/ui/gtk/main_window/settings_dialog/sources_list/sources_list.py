@@ -7,6 +7,7 @@ from task_center.core.app import TaskCenterCore
 from task_center.ui.gtk.main_window.settings.sources.edit_dialog.edit_dialog import SourceEditDialog
 from task_center.ui.gtk.main_window.settings.sources.delete_dialog.delete_dialog import SourceDeleteDialog
 
+
 # List Row #############################################################################################################
 class SourceListRow:
     def __init__(self):
@@ -17,6 +18,7 @@ class SourceListRow:
         self.row = Gtk.ListBoxRow()
         self.row.add(self.event_box)
         self.row.show_all()
+
 
 # List #################################################################################################################
 class SourcesList:
