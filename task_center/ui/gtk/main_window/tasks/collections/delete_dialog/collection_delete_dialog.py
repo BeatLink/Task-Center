@@ -1,13 +1,9 @@
-#!/usr/bin/env python3
-
 # Imports ##############################################################################################################
 import pathlib
 import gi
-
-from task_center.core.app import TaskCenterCore
-
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+from task_center.core.app import TaskCenterCore
 
 # Collection Delete Dialog #############################################################################################
 class CollectionDeleteDialog:
@@ -15,8 +11,6 @@ class CollectionDeleteDialog:
         self.core = core
         self.source_id = None
         self.collection_id = None
-
-        # GtkBuilder
         self.gtk_builder = Gtk.Builder()
         self.gtk_builder.add_from_file(str((pathlib.Path(__file__).parent / 'collection_delete_dialog.glade').resolve()))
         self.gtk_builder.connect_signals(self)
