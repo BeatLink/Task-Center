@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkMenu" id="menu">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkMenuItem" id="menu_view_task_button">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">View Task</property>
+        <property name="use-underline">True</property>
+        <signal name="activate" handler="_on_menu_view_task_button_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menu_edit_button">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">Edit Task</property>
+        <signal name="activate" handler="_on_menu_edit_button_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menu_delete_button">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">Delete Task</property>
+        <signal name="activate" handler="_on_menu_delete_button_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="separator">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menu_new_subtask_button">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">New Subtask</property>
+        <signal name="activate" handler="_on_menu_new_subtask_button_activate" swapped="no"/>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="new_task_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">gtk-new</property>
+  </object>
+  <object class="GtkImage" id="search_task_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-find</property>
+  </object>
+  <object class="GtkImage" id="sort_task_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">view-sort-ascending</property>
+  </object>
+  <object class="GtkBox" id="box">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox" id="button_box">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">6</property>
+        <property name="margin-right">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkButton" id="new_task_button">
+            <property name="label" translatable="yes">New Task</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">New Task</property>
+            <property name="image">new_task_button_image</property>
+            <property name="always-show-image">True</property>
+            <signal name="clicked" handler="_on_new_task_button_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="show_completed_button">
+            <property name="label" translatable="yes">Show Completed</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">New Task</property>
+            <property name="always-show-image">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="sort_task_button">
+            <property name="label" translatable="yes">Sort Tasks</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">sort_task_button_image</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="search_task_button">
+            <property name="label" translatable="yes">Search Tasks</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">search_task_button_image</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkStack" id="stack">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="transition-duration">0</property>
+        <property name="transition-type">crossfade</property>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolled_window">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
+            <child>
+              <object class="GtkViewport" id="viewport">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkEventBox" id="eventbox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkBox" id="tasks_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <style>
+                  <class name="task-view-background"/>
+                </style>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="name">tasks_page</property>
+            <property name="title" translatable="yes">Tasks</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="loading_box">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">18</property>
+            <child>
+              <object class="GtkSpinner" id="loading_spinner">
+                <property name="width-request">64</property>
+                <property name="height-request">64</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="active">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="loading_label">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Loading Tasks</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="name">loading_page</property>
+            <property name="title" translatable="yes">Loading</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </object>
+</interface>

@@ -1,15 +1,14 @@
-#!/usr/bin/env python3
+# Imports ##############################################################################################################
 import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from task_center.core.tasks.recurrence import Recurrence
-from task_center.ui.gtk.main_window.tasks.edit_pane.datetime_button import DateTimeButton
+from task_center.core.tasks.models.task import Recurrence
+from ..datetime_button import DateTimeButton
+
 
 class RecurrenceButton:
-    """
-    This class handles the logic for the recurrence editor popover
-    """
+    """This class handles the logic for the recurrence editor popover"""
     def __init__(self):
         # gui builder preparation
         glade_file_path = str((pathlib.Path(__file__).parent / "recurrence_button.glade").resolve())
@@ -23,13 +22,15 @@ class RecurrenceButton:
         self.interval_menu = builder.get_object('interval_menu')
         self.weekdays_label = builder.get_object('weekdays_label')
         self.weekdays_box = builder.get_object('weekdays_box')
-        self.weekday_sunday_toggle = builder.get_object('sunday_togglebutton')
-        self.weekday_monday_toggle = builder.get_object('monday_togglebutton')
-        self.weekday_tuesday_toggle = builder.get_object('tuesday_togglebutton')
-        self.weekday_wednesday_toggle = builder.get_object('wednesday_togglebutton')
-        self.weekday_thursday_toggle = builder.get_object('thursday_togglebutton')
-        self.weekday_friday_toggle = builder.get_object('friday_togglebutton')
-        self.weekday_saturday_toggle = builder.get_object('saturday_togglebutton')
+        self.weekdays_togglebuttons = [
+            builder.get_object('monday_togglebutton'),
+            builder.get_object('tuesday_togglebutton'),
+            builder.get_object('wednesday_togglebutton'),
+            builder.get_object('thursday_togglebutton'),
+            builder.get_object('friday_togglebutton'),
+            builder.get_object('saturday_togglebutton'),
+            builder.get_object('sunday_togglebutton')
+        ]
         self.day_of_month_label = builder.get_object('day_of_month_label')
         self.day_of_month_box = builder.get_object('day_of_month_box')
         self.day_of_month_inner_box = builder.get_object('day_of_month_inner_box')
@@ -42,8 +43,8 @@ class RecurrenceButton:
         self.stop_number_spinbox = builder.get_object('stop_number_spinbox')
         self.button = builder.get_object('button')
         self.stop_date_picker = DateTimeButton()
-        self.stop_date_picker.button.set_visible(False)
-        self.stop_type_box.pack_start(self.stop_date_picker.button, True, True, 0)
+        self.stop_date_picker._button.set_visible(False)
+        self.stop_type_box.pack_start(self.stop_date_picker._button, True, True, 0)
 
     # element updaters -------------------------------------------------------------------------------------------------
     def _on_button_clicked(self, *_):
@@ -87,7 +88,7 @@ class RecurrenceButton:
 
     def _on_stop_type_menu_changed(self, *_):
         self.stop_number_spinbox.set_visible(True if self.stop_type_menu.get_active_id() == 'number' else False)
-        self.stop_date_picker.button.set_visible(True if self.stop_type_menu.get_active_id() == 'date' else False)
+        self.stop_date_picker._button.set_visible(True if self.stop_type_menu.get_active_id() == 'date' else False)
 
     # Recurrence Saving Methods ----------------------------------------------------------------------------------------
     def get_data(self):
@@ -95,9 +96,10 @@ class RecurrenceButton:
         recurrence.enabled = self.enabled_toggle.get_active()
         recurrence.interval = self.interval_menu.get_active_id()
         recurrence.increment = self.increment_spinbutton.get_value_as_int()
+
         recurrence.weekdays.sunday = self.weekday_sunday_toggle.get_active()
-        recurrence.weekdays.monday = self.weekday_monday_toggle.get_active()
-        recurrence.weekdays.tuesday = self.weekday_tuesday_toggle.get_active()
+        #recurrence.weekdays.monday = .get_active()
+        #recurrence.weekdays.tuesday =.get_active()
         recurrence.weekdays.wednesday = self.weekday_wednesday_toggle.get_active()
         recurrence.weekdays.thursday = self.weekday_thursday_toggle.get_active()
         recurrence.weekdays.friday = self.weekday_friday_toggle.get_active()
@@ -118,13 +120,8 @@ class RecurrenceButton:
         self.enabled_toggle.set_active(recurrence.enabled)
         self.increment_spinbutton.set_value(recurrence.increment)
         self.interval_menu.set_active_id(recurrence.interval)
-        self.weekday_sunday_toggle.set_active(recurrence.weekdays.sunday)
-        self.weekday_monday_toggle.set_active(recurrence.weekdays.monday)
-        self.weekday_tuesday_toggle.set_active(recurrence.weekdays.tuesday)
-        self.weekday_wednesday_toggle.set_active(recurrence.weekdays.wednesday)
-        self.weekday_thursday_toggle.set_active(recurrence.weekdays.thursday)
-        self.weekday_friday_toggle.set_active(recurrence.weekdays.friday)
-        self.weekday_saturday_toggle.set_active(recurrence.weekdays.saturday)
+        for weekday in recurrence.weekdays:
+            self.weekdays_togglebuttons[weekday].set_active(True)
         self.day_of_month_position_menu.set_active_id(recurrence.weekday_of_month.ordinal)
         self.day_of_month_menu.set_active_id(recurrence.weekday_of_month.weekday)
         self.stop_type_menu.set_active_id(recurrence.stop_info.type)

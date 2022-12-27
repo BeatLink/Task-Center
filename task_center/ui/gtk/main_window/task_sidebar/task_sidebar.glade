@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkStack" id="stack">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="transition-type">slide-left-right</property>
+    <child>
+      <object class="GtkBox" id="view_box">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="name">view</property>
+        <property name="title" translatable="yes">View Task</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="edit_box">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="name">edit</property>
+        <property name="title" translatable="yes">Edit Task</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+</interface>

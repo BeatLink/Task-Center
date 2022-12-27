@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkPopover">
+    <property name="can_focus">False</property>
+    <child>
+      <placeholder/>
+    </child>
+  </object>
+  <object class="GtkWindow" id="criteria_builder_window">
+    <property name="can_focus">False</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkBox" id="criteria_builder_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkListBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="menu_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkComboBoxText" id="task_attributes_menu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active_id">title</property>
+                <items>
+                  <item id="title" translatable="yes">Title</item>
+                  <item id="description" translatable="yes">Description</item>
+                  <item id="start_date" translatable="yes">Start Date</item>
+                  <item id="due_date" translatable="yes">Due Date</item>
+                  <item id="done_date" translatable="yes">Done Date</item>
+                  <item id="recurrence" translatable="yes">Recurrence</item>
+                </items>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="recurrence_attributes_menu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <items>
+                  <item translatable="yes">Is Enabled</item>
+                  <item translatable="yes">Is Disabled</item>
+                  <item translatable="yes">Interval</item>
+                  <item translatable="yes">Increment</item>
+                  <item translatable="yes">Weekdays</item>
+                  <item translatable="yes">Weekday of Month</item>
+                  <item translatable="yes">Stop Type</item>
+                  <item translatable="yes">Stop Date</item>
+                  <item translatable="yes">Stop Number</item>
+                </items>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="date_criteria_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkComboBoxText" id="date_criteria_menu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <items>
+                      <item translatable="yes">Is later than</item>
+                      <item translatable="yes">Is later than or set to</item>
+                      <item translatable="yes">Is earlier than</item>
+                      <item translatable="yes">Is earlier than or set to</item>
+                      <item translatable="yes">Is Set to</item>
+                    </items>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="date_criteria_button">
+                    <property name="label" translatable="yes">Select Date</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="string_criteria_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkComboBoxText" id="string_criteria_menu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <items>
+                      <item translatable="yes">Contains</item>
+                      <item translatable="yes">Is equal to</item>
+                      <item translatable="yes">Is empty</item>
+                    </items>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="string_criteria_entry">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="number_criteria_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkComboBoxText" id="number_criteria_menu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <items>
+                      <item translatable="yes">&gt;</item>
+                      <item translatable="yes">&gt;=</item>
+                      <item translatable="yes">=</item>
+                      <item translatable="yes">&lt;=</item>
+                      <item translatable="yes">&lt;</item>
+                    </items>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="number_criteria_spinbox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="recurrence_interval_menu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <items>
+                  <item translatable="yes">Minute</item>
+                  <item translatable="yes">Hour</item>
+                  <item translatable="yes">Day</item>
+                  <item translatable="yes">Week</item>
+                  <item translatable="yes">Month</item>
+                  <item translatable="yes">Year</item>
+                </items>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleButton">
+                <property name="label" translatable="yes">Not</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">6</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkDialog" id="dialog">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="box">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="button_box">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="row_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel" id="title_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Title:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="color_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Colour:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="priority_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Priority:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkColorButton" id="colour_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="priority_spinbutton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="criteria_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Criteria:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="criteria_button">
+                <property name="label" translatable="yes">button</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="title_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -40,7 +40,7 @@ Task Center can synchronize task data with multiple sources including:
 - Local Database
 
 
-## Current Status: Alpha
+## Current Status: Prealpha
 [![pipeline status](https://gitlab.com/beatlink-projects/Task-Center/Task-Center/badges/master/pipeline.svg)](https://gitlab.com/beatlink-projects/Task-Center/Task-Center/commits/master)
 The software is currently a work in progress software that breaks often. Do not use it with production data.
 For information on current and planned functionality, check out the TODO.txt file

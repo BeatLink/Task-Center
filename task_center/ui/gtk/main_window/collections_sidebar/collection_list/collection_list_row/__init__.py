@@ -1,0 +1,1 @@
+from .collection_list_row import CollectionListRow

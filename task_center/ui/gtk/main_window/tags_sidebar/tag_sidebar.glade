@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkBox" id="tag_box">
+    <property name="width-request">200</property>
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkHeaderBar" id="tag_headerbar">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="title" translatable="yes">Tags</property>
+        <property name="has-subtitle">False</property>
+        <child>
+          <object class="GtkButton" id="add_tag_button">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">New Tag</property>
+            <property name="always-show-image">True</property>
+            <child>
+              <object class="GtkImage" id="new_tag_image">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="stock">gtk-add</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="tag_actionbar_revealer">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="transition-type">slide-up</property>
+        <child>
+          <object class="GtkActionBar" id="tag_actionbar">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child type="center">
+              <object class="GtkButton" id="edit_tag_button">
+                <property name="label" translatable="yes">Edit Tag</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow" id="tag_scrolled_window">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <child>
+          <object class="GtkTreeView" id="tag_treeview">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="model">tag_treestore</property>
+            <property name="expander-column">tag_column</property>
+            <property name="search-column">0</property>
+            <child internal-child="selection">
+              <object class="GtkTreeSelection"/>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn" id="tag_column"/>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </object>
+</interface>

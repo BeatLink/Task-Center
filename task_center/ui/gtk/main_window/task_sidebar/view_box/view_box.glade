@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkImage" id="edit_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">gtk-edit</property>
+  </object>
+  <object class="GtkImage" id="mark_done_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">object-select-symbolic</property>
+  </object>
+  <object class="GtkImage" id="new_subtask_button_image">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">gtk-new</property>
+  </object>
+  <object class="GtkBox" id="box">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox" id="button_box">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">6</property>
+        <property name="margin-right">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkButton" id="mark_done_button">
+            <property name="label" translatable="yes">Mark Done</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">mark_done_button_image</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="new_subtask_button">
+            <property name="label" translatable="yes">New Subtask</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">new_subtask_button_image</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="edit_button">
+            <property name="label" translatable="yes">Edit Task</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="image">edit_button_image</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <!-- n-columns=2 n-rows=22 -->
+      <object class="GtkGrid" id="grid">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-start">18</property>
+        <property name="margin-end">18</property>
+        <property name="margin-top">18</property>
+        <property name="margin-bottom">18</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="row-spacing">12</property>
+        <property name="column-spacing">12</property>
+        <child>
+          <object class="GtkLabel" id="title_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Title</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="description_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Description</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="start_date_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Start Date</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">7</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="due_date_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Due Date</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="recurrence_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Repeats</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="priority_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Priority</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">15</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="tags_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Tags</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">17</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="subtasks_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Subtasks</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="reminder_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Reminder</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">11</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="timer_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Timer</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">13</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="collection_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Collection</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="seperator1">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator2">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">6</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="parent_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Super-Task</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator3">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">10</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator4">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">12</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator5">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">14</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator6">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">16</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator7">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">18</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="location_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Location</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">19</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="separator8">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">20</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="attachment_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Attachment</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">21</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="title_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="description_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="collection_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="subtasks_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="start_date_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">7</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="due_date_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="recurrence_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="view_reminder_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">11</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="tags_data_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">17</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="view_location_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="hexpand">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">19</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="view_attachments_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">21</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="view_priority_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">15</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLinkButton" id="super_task_data_label">
+            <property name="label" translatable="yes">None</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="halign">start</property>
+            <property name="relief">none</property>
+            <signal name="activate-link" handler="_on_super_task_data_label_activate_link" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">4</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+</interface>

@@ -133,6 +133,21 @@
       </packing>
     </child>
   </object>
+  <object class="GtkBox" id="collections_box">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+  </object>
   <object class="GtkMenu" id="menu">
     <property name="visible">True</property>
     <property name="can-focus">False</property>

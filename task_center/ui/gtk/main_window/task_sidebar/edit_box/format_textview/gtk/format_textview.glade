@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkTextTagTable" id="texttagtable">
+    <child type="tag">
+      <object class="GtkTextTag" id="texttag_bold">
+        <property name="font">Normal</property>
+        <property name="weight">700</property>
+      </object>
+    </child>
+    <child type="tag">
+      <object class="GtkTextTag" id="texttag_italics">
+        <property name="font">Normal Italic</property>
+      </object>
+    </child>
+    <child type="tag">
+      <object class="GtkTextTag" id="texttag_link">
+        <property name="foreground">blue</property>
+        <property name="foreground_rgba">rgb(0,0,238)</property>
+        <property name="font">Normal</property>
+        <property name="underline">single</property>
+      </object>
+    </child>
+    <child type="tag">
+      <object class="GtkTextTag" id="texttag_underline">
+        <property name="font">Normal</property>
+        <property name="underline">single</property>
+      </object>
+    </child>
+    <child type="tag">
+      <object class="GtkTextTag" id="texttag_strikethrough">
+        <property name="font">Normal</property>
+        <property name="strikethrough">True</property>
+      </object>
+    </child>
+    <child type="tag">
+      <object class="GtkTextTag" id="texttag_search_highlight">
+        <property name="background_rgba">rgb(0,148,255)</property>
+        <property name="foreground_rgba">rgb(255,255,255)</property>
+        <property name="font">Normal</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTextBuffer" id="textbuffer">
+    <property name="tag_table">texttagtable</property>
+    <signal name="insert-text" handler="on_textbuffer_insert_text" swapped="no"/>
+    <signal name="mark-set" handler="_on_textbuffer_mark_set" swapped="no"/>
+  </object>
+  <object class="GtkBox" id="box">
+    <property name="width_request">400</property>
+    <property name="height_request">200</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_left">3</property>
+    <property name="margin_right">3</property>
+    <property name="margin_top">3</property>
+    <property name="margin_bottom">3</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">3</property>
+    <child>
+      <object class="GtkBox" id="button_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkToggleButton" id="bold_togglebutton">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="focus_on_click">False</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Bold</property>
+            <child>
+              <object class="GtkImage" id="bold_togglebutton_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-bold</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToggleButton" id="italics_togglebutton">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="focus_on_click">False</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Italics</property>
+            <child>
+              <object class="GtkImage" id="italics_togglebutton_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-italic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToggleButton" id="underline_togglebutton">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="focus_on_click">False</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Underline</property>
+            <child>
+              <object class="GtkImage" id="underline_togglebutton_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-underline</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToggleButton" id="strikethrough_togglebutton">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="focus_on_click">False</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Strikethrough</property>
+            <child>
+              <object class="GtkImage" id="strikethrough_togglebutton_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-strikethrough</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSearchEntry" id="search_entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="primary_icon_name">edit-find-symbolic</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">False</property>
+            <property name="placeholder_text" translatable="yes">Search For Text...</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkInfoBar" id="infobar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="show_close_button">True</property>
+        <property name="revealed">False</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child internal-child="content_area">
+          <object class="GtkBox" id="infobar_box">
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="infobar_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">label</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">False</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow" id="scrolled_window">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="shadow_type">etched-in</property>
+        <child>
+          <object class="GtkTextView" id="textview">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="has_focus">True</property>
+            <property name="is_focus">True</property>
+            <property name="vscroll_policy">natural</property>
+            <property name="wrap_mode">word</property>
+            <property name="left_margin">6</property>
+            <property name="right_margin">6</property>
+            <property name="top_margin">6</property>
+            <property name="bottom_margin">6</property>
+            <property name="buffer">textbuffer</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </object>
+</interface>

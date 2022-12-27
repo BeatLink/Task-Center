@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkBox" id="box">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox" id="main_box">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkEventBox" id="subtask_reveal_eventbox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-left">6</property>
+            <property name="margin-right">6</property>
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="above-child">True</property>
+            <signal name="button-press-event" handler="_on_subtask_reveal_image_eventbox_button_press_event" swapped="no"/>
+            <child>
+              <object class="GtkImage" id="subtask_reveal_image">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="opacity">0</property>
+                <property name="icon-name">pan-end-symbolic</property>
+                <property name="icon_size">3</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkListBox" id="listbox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkListBoxRow" id="listbox_row">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <child>
+                  <object class="GtkEventBox" id="dnd_eventbox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkBox" id="details_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-left">6</property>
+                        <property name="margin-right">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="spacing">12</property>
+                        <child>
+                          <object class="GtkCheckButton" id="done_checkbox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="draw-indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="title_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">label</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="start_date_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">label</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="due_date_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">label</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="tags_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">label</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="card"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <style>
+          <class name="list-row"/>
+        </style>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="subtasks_revealer">
+        <property name="name">subtasks_box_revealer</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">24</property>
+        <property name="margin-start">24</property>
+        <child>
+          <object class="GtkBox" id="subtasks_box">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <signal name="add" handler="_on_subtasks_box_changed" swapped="no"/>
+            <signal name="remove" handler="_on_subtasks_box_changed" swapped="no"/>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+</interface>

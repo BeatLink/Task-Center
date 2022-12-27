@@ -126,7 +126,7 @@
                 <property name="transition-type">slide-left-right</property>
                 <property name="interpolate-size">True</property>
                 <child>
-                  <!-- n-columns=2 n-rows=3 -->
+                  <!-- n-columns=2 n-rows=4 -->
                   <object class="GtkGrid" id="caldav_grid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -209,6 +209,29 @@
                       <packing>
                         <property name="left-attach">1</property>
                         <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="caldav_self_signed_cert_label">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="label" translatable="yes">Self Signed Cert</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSwitch" id="caldav_self_signed_cert_switch">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">start</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                   </object>

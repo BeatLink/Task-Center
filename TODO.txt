@@ -1,36 +1,36 @@
 About
-    - About Dialog                  DONE
+    - About Dialog                    DONE
 Settings
-    - Settings Dialog               DONE
-    - Data Source Configuration     DONE
-    - Sidebar width customization   DONE
-Sources Sidebar
-    - Add Tasklist to Source        DONE
-    - View Tasklists in Source      DONE
-    - Edit Tasklist in Source       DONE
-    - Delete Tasklist in Source     DONE
-    - Refresh List                  DONE
+    - Settings Dialog                 DONE
+    - Data Backends Configuration     DONE
+    - Sidebar width customization     DONE
+BackendManager Sidebar
+    - Add Tasklist to Backends        DONE
+    - View Tasklists in Backends      DONE
+    - Edit Tasklist in Backends       DONE
+    - Delete Tasklist in Backends     DONE
+    - Refresh List                    DONE
 Tasklist
-    - New Task Button               TODO
-    - Subtasks                      DONE
-    - Drag and drop                 TODO
-    - Sorting                       TODO
-    - Marking tasks done            TODO
+    - New Task Button                 TODO
+    - Subtasks                        DONE
+    - Drag and drop                   DONE
+    - Sorting                         TODO
+    - Marking tasks done              TODO
 Taskview
-    - Create Task                   TODO
-    - Edit Task                     TODO
-    - View Task                     TODO
-    - Delete Task                   TODO
+    - Create Task                     TODO
+    - Edit Task                       TODO
+    - View Task                       TODO
+    - Delete Task                     TODO
 Tags
-    - Add tag to tasks              TODO
-    - Remove tag from tasks         TODO
-    - View tasks with tags          TODO
-    - View tags of task             TODO
+    - Add tag to tasks                TODO
+    - Remove tag from tasks           TODO
+    - View tasks with tags            TODO
+    - View tags of task               TODO
 Testing
-    - Unit Tests                    TODO
-    - Integration Test              TODO
+    - Unit Tests                      TODO
+    - Integration Test                TODO
 Command Prompt Launch Options
-    - V: Version                    TODO
+    - V: Version                      TODO
 
 
 Future - Integrate features from joplin plugins into Task Center

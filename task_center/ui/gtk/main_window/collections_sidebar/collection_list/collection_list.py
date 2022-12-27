@@ -3,27 +3,12 @@ import pathlib
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from task_center.ui.gtk.main_window.tasks.collections.delete_dialog import CollectionDeleteDialog
-from task_center.ui.gtk.main_window.tasks.collections.edit_dialog import CollectionEditDialog
-
-
-# Collection Row #######################################################################################################
-class CollectionSidebarRow:
-    def __init__(self):
-        gtk_builder = Gtk.Builder()
-        gtk_builder.add_from_file(str((pathlib.Path(__file__).parent / 'collection_sidebar.glade').resolve()))
-        self.event_box = gtk_builder.get_object('row_event_box')
-        self.box = gtk_builder.get_object("row_box")
-        self.icon_label = gtk_builder.get_object("row_icon_label")
-        self.title_label = gtk_builder.get_object("row_title_label")
-        self.row = Gtk.ListBoxRow()
-        self.row.add(self.event_box)
-        self.row.show_all()
+from .collection_list_row import CollectionListRow
 
 
 # Collection Sidebar ###################################################################################################
-class CollectionSidebar:
-    def __init__(self, core, source_id):
+class CollectionList:
+    def __init__(self, core, source_id, edit_dialog, delete_dialog):
         # Internal Variables
         self.core = core
         self.source_id = source_id
@@ -31,7 +16,7 @@ class CollectionSidebar:
 
         # Setup GTK Builder
         self._gtk_builder = Gtk.Builder()
-        self._gtk_builder.add_from_file(str(pathlib.Path(__file__).parent.resolve() / 'collection_sidebar.glade'))
+        self._gtk_builder.add_from_file(str(pathlib.Path(__file__).parent.resolve() / 'collection_list.glade'))
         self._gtk_builder.connect_signals(self)
 
         # Widgets setup
@@ -45,9 +30,9 @@ class CollectionSidebar:
         self.edit_menubutton = self._gtk_builder.get_object("edit_menubutton")
         self.delete_menubutton = self._gtk_builder.get_object("delete_menubutton")
         self.rows = {}
-        self.edit_dialog = CollectionEditDialog(self.core)
+        self.edit_dialog = edit_dialog
         self.edit_dialog.save_button.connect('clicked', self._on_edit_dialog_save_button_clicked)
-        self.delete_dialog = CollectionDeleteDialog(self.core)
+        self.delete_dialog = delete_dialog
         self.delete_dialog.delete_button.connect("clicked", self._on_delete_dialog_delete_button_clicked)
 
     # Event Handlers ---------------------------------------------------------------------------------------------------
@@ -96,12 +81,14 @@ class CollectionSidebar:
         source = self.core.tasks_manager.get_source(source_id)
         if source.enabled:
             self.label.set_text(source.display_name)
-            for collection_id, collection in self.core.tasks_manager.get_all_collections(source_id):
-                self.rows[collection_id] = CollectionSidebarRow()
-                self.rows[collection_id].event_box.connect(
-                    "button-press-event", self._on_collection_right_clicked, collection_id)
-                self.rows[collection_id].row.id = collection_id
-                self.listbox.insert(self.rows[collection_id].row, -1)
-                collection.color = "#000000" if not collection.color else collection.color
-                self.rows[collection_id].icon_label.set_markup(f'<span foreground="{collection.color}">⬤</span>')
-                self.rows[collection_id].title_label.set_text(collection.name)
+            collections = self.core.tasks_manager.get_all_collections(source_id)
+            if collections:
+                for collection_id, collection in collections:
+                    self.rows[collection_id] = CollectionListRow()
+                    self.rows[collection_id].event_box.connect(
+                        "button-press-event", self._on_collection_right_clicked, collection_id)
+                    self.rows[collection_id].row.id = collection_id
+                    self.listbox.insert(self.rows[collection_id].row, -1)
+                    collection.color = "#000000" if not collection.color else collection.color
+                    self.rows[collection_id].icon_label.set_markup(f'<span foreground="{collection.color}">⬤</span>')
+                    self.rows[collection_id].title_label.set_text(collection.name)

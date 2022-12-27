@@ -35,6 +35,7 @@ class SourceEditDialog:
         self.caldav_url_entry = self.gtk_builder.get_object("caldav_url_entry")
         self.caldav_username_entry = self.gtk_builder.get_object("caldav_username_entry")
         self.caldav_password_entry = self.gtk_builder.get_object("caldav_password_entry")
+        self.caldav_self_signed_cert_switch = self.gtk_builder.get_object("caldav_self_signed_cert_switch")
 
     # Event Handlers ---------------------------------------------------------------------------------------------------
     def _on_cancel_button_clicked(self, *_):
@@ -70,6 +71,7 @@ class SourceEditDialog:
             source.url = self.caldav_url_entry.get_text()
             source.username = self.caldav_username_entry.get_text()
             source.password = self.caldav_password_entry.get_text()
+            source.self_signed_cert = self.caldav_self_signed_cert_switch.get_active()
         elif source_type == "decsync":
             path = self.decsync_filechooser_button.get_uri() if self.decsync_filechooser_button.get_uri() else ""
             path = path.replace("file://", "")
@@ -97,6 +99,7 @@ class SourceEditDialog:
             self.caldav_url_entry.set_text(source.url)
             self.caldav_username_entry.set_text(source.username)
             self.caldav_password_entry.set_text(source.password)
+            self.caldav_self_signed_cert_switch.set_active(source.self_signed_cert)
         elif source.type == "decsync":
             path = source.decsync_dir
             if path:

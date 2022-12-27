@@ -38,7 +38,7 @@ exclude = []
 "Bug Tracker" = "https://gitlab.com/beatlink-code/Task-Center/-/issues"
 
 [tool.poetry.scripts]
-x-tasks = 'task_center.ui.app:run_app'
+task-center = 'task_center.ui.app:run_app'
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -49,7 +49,7 @@ pyxdg = "^0.28"
 toml = "^0.10"
 poetry = "^1.2.2"
 appdirs = "^1.4.3"
-caldav = "^0.10.0"
+caldav = "^0.11.0"
 icalendar = "^5.0.1"
 libdecsync = "^2.2.1"
 peewee = "^3.15.3"
@@ -57,6 +57,7 @@ pyyaml = "^6.0"
 setuptools = "^65.5.0"
 radicale = "^3.1.8"
 charset-normalizer = "^3.0.0"
+cryptography = "^38.0.4"
 
 [tool.poetry.dev-dependencies]
 
